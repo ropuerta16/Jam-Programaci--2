@@ -13,7 +13,7 @@ namespace TcGame
             Layer = ELayer.Hud;
             f = new Font("Data/Fonts/georgia.ttf");
             t = new Text("100/100",f);
-            Position = new Vector2f(GetGlobalBounds().Width / 2,0);
+            Position = new Vector2f(Engine.Get.Window.Size.X / 2, 0);
         }
 
         public override void Update(float dt)

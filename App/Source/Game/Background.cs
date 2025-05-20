@@ -14,6 +14,7 @@ namespace TcGame
     }
     public override void Update(float dt)
     {
+            base.Update(dt);
     }
   }
 }

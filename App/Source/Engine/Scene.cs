@@ -58,12 +58,6 @@ namespace TcGame
         if (a.Layer == Actor.ELayer.Background)
           a.Draw(target, states);
       foreach (Actor a in actors)
-        if (a.Layer == Actor.ELayer.Back)
-          a.Draw(target, states);
-      foreach (Actor a in actors)
-        if (a.Layer == Actor.ELayer.Middle)
-          a.Draw(target, states);
-      foreach (Actor a in actors)
         if (a.Layer == Actor.ELayer.Front)
           a.Draw(target, states);
       foreach (Actor a in actors)
