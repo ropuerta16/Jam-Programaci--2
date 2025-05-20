@@ -439,6 +439,15 @@
     <None Update="Data\Textures\FX\PlaneCloudGas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Textures\Nuestro\125585447-pixel-monsters-vector-icon-set-varias-criaturas-de-8-bits-aisladas-en-blanco-ilustración-de-personaj copy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\Nuestro\ligth.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\Nuestro\negro_alpha.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Textures\People\People01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
