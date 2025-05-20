@@ -4,7 +4,7 @@ using System;
 
 namespace GameJam
 {
-  public class Scene : Drawable
+  public class Scene_2 : Drawable
   {
     private List<Actor> actors = new List<Actor>();
     private List<Actor> actorsToDestroy = new List<Actor>();

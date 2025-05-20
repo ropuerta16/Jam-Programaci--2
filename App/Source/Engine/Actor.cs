@@ -15,8 +15,8 @@ namespace GameJam
     public enum ELayer
     {
       Background,
-      Back,
-      Middle,
+      Entity,
+      Darkness,
       Front,
       Hud
     }

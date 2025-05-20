@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TcGame
+namespace GameJam
 {
     internal class Intro : StaticActor
     {

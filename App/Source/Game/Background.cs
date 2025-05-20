@@ -10,10 +10,11 @@ namespace GameJam
     public Background()
     {
       Layer = ELayer.Background;
-      Sprite = new Sprite(new Texture("Data/Textures/Background_black.jpg"));
+      Sprite = new Sprite(new Texture("Data/Textures/Background/Background.png"));
     }
     public override void Update(float dt)
     {
+            base.Update(dt);
     }
   }
 }
