@@ -2,7 +2,7 @@
 using SFML.System;
 using SFML.Window;
 
-namespace TcGame
+namespace GameJam
 {
   public class Background : StaticActor
   {
@@ -10,7 +10,7 @@ namespace TcGame
     public Background()
     {
       Layer = ELayer.Background;
-      Sprite = new Sprite(new Texture("Data/Textures/Nuestro/negro_alpha.png"));
+      Sprite = new Sprite(new Texture("Data/Textures/Background/Background.png"));
     }
     public override void Update(float dt)
     {

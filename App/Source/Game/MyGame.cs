@@ -2,12 +2,17 @@
 using SFML.System;
 using SFML.Window;
 
-namespace TcGame
+namespace GameJam
 {
     public class MyGame : Game
     {
         public Hud hud { private set; get; }
         public Background background { get; private set; }
+        public Light light { private set; get; }
+        public Enemies enemies { private set; get; }
+
+
+
         private static MyGame instance;
         public static MyGame Get
         {
@@ -28,6 +33,8 @@ namespace TcGame
         {
             background = Engine.Get.Scene.Create<Background>();
             hud = Engine.Get.Scene.Create<Hud>();
+            light = Engine.Get.Scene.Create<Light>();
+            enemies = Engine.Get.Scene.Create<Enemies>();
         }
 
         public void DeInit()

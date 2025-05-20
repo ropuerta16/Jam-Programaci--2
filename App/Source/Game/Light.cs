@@ -1,30 +1,28 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 
-namespace TcGame
+namespace GameJam
 {
     public class Light : StaticActor
     {
+        CircleShape cs;
         public Light()
         {
-            Sprite = new Sprite(new Texture("Data/Textures/Nuestro/light.png"));
-            Position = new Vector2f(Engine.Get.Window.Size.X / 2, Engine.Get.Window.Size.Y / 2);
+            cs = new CircleShape(20f);
+            cs.FillColor = Color.White;
+            Layer = ELayer.Front;
         }
 
         public override void Update(float dt)
         {
             base.Update(dt);
-
-
-
-
-
-
+            Position = new Vector2f(Engine.Get.MousePos.X, Engine.Get.MousePos.Y);
+            cs.Position = new Vector2f(Position.X, Position.Y);
         }
-
         public override void Draw(RenderTarget target, RenderStates states)
         {
             base.Draw(target, states);
+            cs.Draw(target, states);
         }
     }
 }

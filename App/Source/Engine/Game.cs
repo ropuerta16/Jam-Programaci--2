@@ -1,4 +1,4 @@
-﻿namespace TcGame
+﻿namespace GameJam
 {
   public interface Game
   {
