@@ -2,7 +2,7 @@
 using SFML.System;
 using SFML.Window;
 
-namespace TcGame
+namespace GameJam
 {
   public class Background : StaticActor
   {

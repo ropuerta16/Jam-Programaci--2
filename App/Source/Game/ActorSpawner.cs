@@ -3,7 +3,7 @@ using SFML.System;
 using System;
 using SFML.Graphics;
 
-namespace TcGame
+namespace GameJam
 {
   public class ActorSpawner<T> : Actor where T : Actor, new()
   {

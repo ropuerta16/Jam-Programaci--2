@@ -2,7 +2,7 @@
 using SFML.Graphics;
 using System;
 
-namespace TcGame
+namespace GameJam
 {
   public class Scene : Drawable
   {

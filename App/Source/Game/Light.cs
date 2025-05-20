@@ -1,8 +1,8 @@
 ﻿using SFML.Graphics;
 
-namespace TcGame
+namespace GameJam
 {
-  public class Light : AnimatedActor
+  public class Light : Actor
   {
 
     public override void Draw(RenderTarget target, RenderStates states)
