@@ -15,8 +15,6 @@ namespace TcGame
     public enum ELayer
     {
       Background,
-      Back,
-      Middle,
       Front,
       Hud
     }

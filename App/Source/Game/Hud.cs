@@ -10,6 +10,7 @@ namespace TcGame
         public float health;
         public Hud()
         {
+            Layer = ELayer.Hud;
             f = new Font("Data/Fonts/georgia.ttf");
             t = new Text("100/100",f);
             Position = new Vector2f(GetGlobalBounds().Width / 2,0);
