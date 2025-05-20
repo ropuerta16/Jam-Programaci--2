@@ -11,6 +11,7 @@ namespace GameJam
             cs = new CircleShape(20f);
             cs.FillColor = Color.White;
             Layer = ELayer.Front;
+            cs.Origin = new Vector2f(GetLocalBounds().Width / 2 ,GetLocalBounds().Height / 2 );
         }
 
         public override void Update(float dt)

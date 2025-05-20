@@ -48,7 +48,7 @@ namespace GameJam
     private void Init()
     {
       VideoMode videoMode = new VideoMode(1024, 768);
-      Window = new RenderWindow(videoMode, "Arkanoid");
+      Window = new RenderWindow(videoMode, "Lightbringer");
       Window.SetVerticalSyncEnabled(true);
 
       SoundMgr = new SoundManager();

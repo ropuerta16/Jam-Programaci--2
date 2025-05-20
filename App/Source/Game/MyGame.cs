@@ -10,6 +10,7 @@ namespace GameJam
         public Background background { get; private set; }
         public Light light { private set; get; }
         public Enemies enemies { private set; get; }
+        public PowerUp powerUp { private set; get; }
 
 
 
@@ -35,6 +36,7 @@ namespace GameJam
             hud = Engine.Get.Scene.Create<Hud>();
             light = Engine.Get.Scene.Create<Light>();
             enemies = Engine.Get.Scene.Create<Enemies>();
+            powerUp = Engine.Get.Scene.Create<PowerUp>();
         }
 
         public void DeInit()

@@ -13,12 +13,11 @@ namespace GameJam
 
         public PowerUp()
         {
-            Sprite = new Sprite(new Texture("Data/Textures/PowerUp/Potion.png"));
+            Sprite = new Sprite(new Texture("Data/Textures/PowerUp/pocio.png"));
             Random r = new Random();
             float x = r.Next(0, 1024);
             float y = r.Next(0, 768);
             Position = new Vector2f(x, y);
-
         }
         public override void Draw(RenderTarget target, RenderStates states)
         {

@@ -11,7 +11,7 @@ namespace GameJam
         public Hud()
         {
             Layer = ELayer.Hud;
-            f = new Font("Data/Fonts/georgia.ttf");
+            f = new Font("Data/Fonts/osifont-gpl2fe.ttf");
             t = new Text(health + "/100",f);
             Position = new Vector2f(Engine.Get.Window.Size.X / 2, Engine.Get.Window.Size.Y / 2);
         }
