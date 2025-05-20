@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 using SFML.Graphics;
 using SFML.System;
 
@@ -25,7 +26,8 @@ namespace GameJam
         {
             base.Update(dt);
 
-            Forward = l.Position - Position;
+            Vector2f dist = Engine.Get.MousePos - Position;
+            Forward = dist.Normal();
         }
     }
 }
