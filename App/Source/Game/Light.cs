@@ -3,14 +3,9 @@ using SFML.System;
 
 namespace GameJam
 {
-<<<<<<< HEAD
-  public class Light : Actor
-  {
 
-    public override void Draw(RenderTarget target, RenderStates states)
-=======
     public class Light : StaticActor
->>>>>>> main
+
     {
         CircleShape cs;
         public Light()

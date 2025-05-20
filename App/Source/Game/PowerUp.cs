@@ -3,17 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 
-
-namespace GameJam
-{
-    internal class PowerUp:StaticActor
-    {
-        public PowerUp()
-        {
-            Sprite = new Sprite(new Texture("Data/texture/light.png"));
-=======
 using SFML.Graphics;
 using SFML.System;
 
@@ -39,7 +29,7 @@ namespace GameJam
         public override void Update(float dt)
         {
             base.Update(dt);
->>>>>>> main
+
 
         }
     }
