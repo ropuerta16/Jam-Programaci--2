@@ -12,7 +12,7 @@ namespace TcGame
         {
             f = new Font("Data/Fonts/georgia.ttf");
             t = new Text("100/100",f);
-
+            Position = new Vector2f(GetGlobalBounds().Width / 2,0);
         }
 
         public override void Update(float dt)
