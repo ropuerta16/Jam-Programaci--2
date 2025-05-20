@@ -2,7 +2,7 @@
 using SFML.Graphics;
 using System;
 
-namespace TcGame
+namespace GameJam
 {
   public class Scene : Drawable
   {
@@ -58,10 +58,10 @@ namespace TcGame
         if (a.Layer == Actor.ELayer.Background)
           a.Draw(target, states);
       foreach (Actor a in actors)
-        if (a.Layer == Actor.ELayer.Back)
+        if (a.Layer == Actor.ELayer.Entity)
           a.Draw(target, states);
       foreach (Actor a in actors)
-        if (a.Layer == Actor.ELayer.Middle)
+        if (a.Layer == Actor.ELayer.Darkness)
           a.Draw(target, states);
       foreach (Actor a in actors)
         if (a.Layer == Actor.ELayer.Front)

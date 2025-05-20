@@ -1,20 +1,17 @@
 ﻿using SFML.Graphics;
-using SFML.System;
-using SFML.Window;
 
-namespace TcGame
+namespace GameJam
 {
-  public class Background : StaticActor
-  {
-    public float Speed = 0;
-    public Background()
+    public class Background : StaticActor
     {
-      Layer = ELayer.Background;
-      Sprite = new Sprite(new Texture("Data/Textures/Background_black.jpg"));
+        public Background()
+        {
+            Layer = ELayer.Background;
+            Sprite = new Sprite(new Texture("Data/Textures/Background.png"));
+        }
+        public override void Update(float dt)
+        {
+        }
     }
-    public override void Update(float dt)
-    {
-    }
-  }
 }
 

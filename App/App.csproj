@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Source\Game\Darkness.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Candle.NET" Version="1.0.1" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
   </ItemGroup>
 
@@ -394,6 +399,9 @@
     <None Update="Data\Textures\Background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Textures\Background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Textures\Boxes\Bomb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -451,7 +459,7 @@
     <None Update="Data\Textures\Pixel.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\SpaceInvader.png">
+    <None Update="Data\Textures\PowerUp\Potion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\throne.png">

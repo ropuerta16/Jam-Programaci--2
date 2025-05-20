@@ -4,7 +4,7 @@ using SFML.Window;
 using SFML.System;
 using System;
 
-namespace TcGame
+namespace GameJam
 {
   public class AnimatedSprite : Transformable, Drawable
   {

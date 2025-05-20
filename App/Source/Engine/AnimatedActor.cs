@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace TcGame
+namespace GameJam
 {
   public class AnimatedActor : Actor
   {

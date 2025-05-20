@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace TcGame
+namespace GameJam
 {
   public class Actor : Transformable, Drawable
   {
@@ -15,8 +15,8 @@ namespace TcGame
     public enum ELayer
     {
       Background,
-      Back,
-      Middle,
+      Entity,
+      Darkness,
       Front,
       Hud
     }
