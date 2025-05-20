@@ -2,7 +2,7 @@
 
 namespace TcGame
 {
-  public class Plane : AnimatedActor
+  public class Light : AnimatedActor
   {
 
     public override void Draw(RenderTarget target, RenderStates states)
