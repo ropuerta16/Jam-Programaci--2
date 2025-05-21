@@ -31,7 +31,6 @@ namespace GameJam
             {
                 case TargetType.Start:
                     Sprite = new Sprite(new Texture("Data/Textures/TargetPoint/Scroll.png"));
-                    Scale *= 0.25f;
                     Center();
 
                     Position = new Vector2f(

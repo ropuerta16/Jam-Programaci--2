@@ -51,6 +51,8 @@ namespace GameJam
                 && (MyGame.Get.Lightbeam.Position - Position).Size() > MyGame.Get.Lightbeam.LightCircle.Radius
                 && MyGame.Get.StartingBeacon is not null
                 && (MyGame.Get.StartingBeacon.Position - Position).Size() > MyGame.Get.StartingBeacon.LightCircle.Radius
+                && MyGame.Get.FinishBeacon is not null
+                && (MyGame.Get.FinishBeacon.Position - Position).Size() > MyGame.Get.FinishBeacon.LightCircle.Radius
             )
             {
                 HealthLossTimer -= dt;
