@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using System;
 
 namespace GameJam
 {
@@ -14,6 +15,8 @@ namespace GameJam
         public Light light { private set; get; }
         public Enemies enemies { private set; get; }
         public Intro intro { private set; get; }
+        public GameOver gameOver { private set; get; }
+        public GameWin gameWin { private set; get; }
 
         private static MyGame instance;
         public static MyGame Get
@@ -60,6 +63,10 @@ namespace GameJam
                     case "playing":
                         break;
                     case "gameOver":
+                        gameOver = Engine.Get.Scene.Create<GameOver>();
+                        break;
+                    case "gameWin":
+                        gameWin = Engine.Get.Scene.Create<GameWin>();
                         break;
                 }
 
@@ -75,8 +82,34 @@ namespace GameJam
                     }
                     break;
                 case "playing":
-                    break;
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.O))
+                    {
+                        state = "gameOver";
+                    } 
+                    else if (Keyboard.IsKeyPressed(Keyboard.Key.P))
+                    {
+                        state = "gameWin";
+                    }
+                        break;
                 case "gameOver":
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.R))
+                    {
+                        state = "game";
+                    }
+                    else if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
+                    {
+                        Environment.Exit(0);
+                    }
+                    break;
+                case "gameWin":
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.R))
+                    {
+                        state = "game";
+                    }
+                    else if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
+                    {
+                        Environment.Exit(0);
+                    }
                     break;
             }
         }
@@ -116,6 +149,18 @@ namespace GameJam
                     }
                     break;
                 case "gameOver":
+                    if (gameOver != null)
+                    {
+                        Engine.Get.Scene.Destroy(gameOver);
+                        gameOver = null;
+                    }
+                    break;
+                case "gameWin":
+                    if (gameWin != null)
+                    {
+                        Engine.Get.Scene.Destroy(gameWin);
+                        gameWin = null;
+                    }
                     break;
             }
         }
