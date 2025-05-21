@@ -28,7 +28,6 @@ namespace GameJam
                     Fog.Draw(light);
                 }
             }
-            Lights = new List<RadialLight>();
             Fog.Draw(target, states);
             Fog.Display();
         }

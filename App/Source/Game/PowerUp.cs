@@ -19,11 +19,11 @@ namespace GameJam
             Center();
 
             Position = new Vector2f(
-                Engine.Get.random.Next((int) GetLocalBounds().Width, (int) Engine.Get.Window.Size.X - (int) GetLocalBounds().Width),
-                Engine.Get.random.Next((int) GetLocalBounds().Height, (int) Engine.Get.Window.Size.Y - (int) GetLocalBounds().Height)
+                Engine.Get.random.NextFloat(GetLocalBounds().Width, Engine.Get.Window.Size.X - GetLocalBounds().Width),
+                Engine.Get.random.NextFloat(GetLocalBounds().Height, Engine.Get.Window.Size.Y - GetLocalBounds().Height)
             );
 
-            RemainingTime = Engine.Get.random.Next(10, 20);
+            RemainingTime = Engine.Get.random.Next(5, 10);
         }
         public override void Draw(RenderTarget target, RenderStates states)
         {
