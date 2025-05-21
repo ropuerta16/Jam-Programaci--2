@@ -123,6 +123,8 @@ namespace GameJam
                         Character?.Destroy();
                         Character = null;
 
+                        FinishBeacon?.Destroy();
+                        FinishBeacon = null;
                         FinishPoint.RemoveOnFinishDestroy();
                         FinishPoint?.Destroy();
                         FinishPoint = null;
