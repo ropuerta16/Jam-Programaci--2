@@ -16,7 +16,7 @@ namespace GameJam
 
         public Sound PlaySound(string soundName, float volume = 100.0f, bool loop = false)
         {
-            SoundBuffer buffer = new SoundBuffer("Data/Sonido/" + soundName + ".wav");
+            SoundBuffer buffer = new SoundBuffer("Data/Sounds/" + soundName + ".wav");
             Sound sound = new Sound(buffer);
             sound.Volume = volume;
             sound.Loop = loop;

@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Source\Game\Darkness.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Candle.NET" Version="1.0.1" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
   </ItemGroup>
 
@@ -137,10 +142,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\Fonts\georgia.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Data\Fonts\LuckiestGuy.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Data\Fonts\osifont-gpl2fe.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -152,9 +157,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\Fonts\osifont.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Fonts\Scratchy Lemon.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\Fonts\Scratchy Lemon.ttf">
@@ -169,22 +171,22 @@
     <None Update="Data\mole.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\InsectDieAudio.ogg">
+    <None Update="Data\Sounds\MothDeathVFX.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\IntroAudio.wav">
+    <None Update="Data\Sounds\IntroAudio.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\LoseAudio.wav">
+    <None Update="Data\Sounds\DefeatAudio.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\PlayingAudio.wav">
+    <None Update="Data\Sounds\GameAudio.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\PotionAudio.wav">
+    <None Update="Data\Sounds\PotionVFX.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Sonido\WinAudio.wav">
+    <None Update="Data\Sounds\VictoryAudio.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\sun.png">
@@ -430,82 +432,22 @@
     <None Update="Data\Textures\Background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\Background\Background.png">
+    <None Update="Data\Textures\Backgrounds\GameBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\Background\Cuadrado.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Background\MenusFondo.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Background\Resctangulo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Boxes\Bomb.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Boxes\Coin.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Boxes\Health.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Bullets\PlaneBullet.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Bullets\TankBullet.png">
+    <None Update="Data\Textures\Backgrounds\MenuBackground.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\Textures\Circle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\Enemies\Ovni01.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemies\Ovni02.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemies\Ovni03.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemies\Ovni04.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemies\Tank01.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemies\Tank02.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Enemy\palometa.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Data\Textures\ESP.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\FX\Explosion.png">
+    <None Update="Data\Textures\Moth\DeathEffect.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\FX\PlaneCloudGas.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Nuestro\Enemy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Nuestro\PowerUp.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\Nuestro\negro_alpha.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\People\People01.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\People\People02.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Textures\People\People03.png">
+    <None Update="Data\Textures\Moth\Moth.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\Textures\Pixel.png">
@@ -514,15 +456,25 @@
     <None Update="Data\Textures\Player\Character.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\PowerUp\potion.png">
+    <None Update="Data\Textures\PowerUp\Potion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Textures\SpaceInvader.png">
+    <None Update="Data\Textures\TargetPoint\Chest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\TargetPoint\MoneyBag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\TargetPoint\Scroll.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\throne.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Textures\TargetPoint\" />
   </ItemGroup>
 
 </Project>
