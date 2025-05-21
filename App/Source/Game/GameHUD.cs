@@ -1,51 +1,58 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using System.Linq;
 
 namespace GameJam
 {
   public class GameHUD : Actor
   {
-        Font f;
-        Text t1;
-        Text t2;
-        Text t3;
+        Font FontOsifont, FontHeartz;
+        Text TXT_LightsOut, TXT_LightsOutTimer, TXT_CurrentHealth;
 
         public float health;
         public GameHUD()
         {
             Layer = ELayer.HUD;
-            f = new Font("Data/Fonts/georgia.ttf");
-            t1 = new Text($"Light Time: {MyGame.Get.Lightbeam.RemainingTime:0.0}s",f);
-            t1.Position = new Vector2f(5f, 5f);
-            t2 = new Text($"Current Radius: {MyGame.Get.Lightbeam.LightCircle.Radius:0.0}", f);
-            t2.Position = new Vector2f(5f, t1.GetLocalBounds().Height + 5f);
-            t3 = new Text($"Current Health: {MyGame.Get.Character.CurrentHealth}", f);
-            t3.Position = new Vector2f(Engine.Get.Window.Size.X - t3.GetLocalBounds().Width - 5f, 0f);
+            FontOsifont = new Font("Data/Fonts/osifont.ttf");
+            FontHeartz = new Font("Data/Fonts/heartz.ttf");
+            TXT_LightsOut = new Text($"Lights out in", FontOsifont);
+            TXT_LightsOut.Position = new Vector2f((Engine.Get.Window.Size.X / 2f) - (TXT_LightsOut.GetLocalBounds().Width / 2f), 7.5f);
+            TXT_LightsOutTimer = new Text($"{MyGame.Get.Lightbeam?.RemainingTime:0.0}s", FontOsifont);
+            TXT_LightsOutTimer.Position = new Vector2f((Engine.Get.Window.Size.X / 2f) - (TXT_LightsOutTimer.GetLocalBounds().Width / 2f), TXT_LightsOut.GetLocalBounds().Height + 15f);
+            string hearts = Enumerable.Range(1, MyGame.Get.Character.CurrentHealth)
+                .Aggregate("", (acc, next) => acc += "D");
+            TXT_CurrentHealth = new Text($"{hearts}", FontHeartz);
+            TXT_CurrentHealth.CharacterSize = 25;
+            TXT_CurrentHealth.Position = new Vector2f((Engine.Get.Window.Size.X / 2f) - (TXT_CurrentHealth.GetLocalBounds().Width / 2f), Engine.Get.Window.Size.Y - (TXT_CurrentHealth.GetLocalBounds().Height + 15f));
         }
 
         public override void Draw(RenderTarget target, RenderStates states)
         {
             base.Draw(target, states);
-            t1.Draw(target, states);
-            t2.Draw(target, states);
-            t3.Draw(target, states);
+            TXT_LightsOut.Draw(target, states);
+            TXT_LightsOutTimer.Draw(target, states);
+            TXT_CurrentHealth.Draw(target, states);
         }
 
         public override void Update(float dt)
         {
+            if (MyGame.Get.CurrentState != MyGame.GameState.Game) return;
             base.Update(dt);
+
             if (MyGame.Get.Lightbeam?.TimeIncrease > 0f)
             {
-                t1.DisplayedString = $"Light Time: {MyGame.Get.Lightbeam?.RemainingTime:0.0}s + {MyGame.Get.Lightbeam?.TimeIncrease:0.0}s";
-
+                TXT_LightsOutTimer.DisplayedString = $"{MyGame.Get.Lightbeam.RemainingTime:0.0}s + {MyGame.Get.Lightbeam.TimeIncrease:0.0}s";
             }
             else
             {
-                t1.DisplayedString = $"Light Time: {MyGame.Get.Lightbeam?.RemainingTime:0.0}s";
+                TXT_LightsOutTimer.DisplayedString = $"{MyGame.Get.Lightbeam.RemainingTime:0.0}s";
             }
+            TXT_LightsOutTimer.Position = new Vector2f((Engine.Get.Window.Size.X / 2f) - (TXT_LightsOutTimer.GetLocalBounds().Width / 2f), TXT_LightsOut.GetLocalBounds().Height + 15f);
 
-            t2.DisplayedString = $"Current Radius: {MyGame.Get.Lightbeam?.LightCircle.Radius:0.0}";
-            t3.DisplayedString = $"Current Health: {MyGame.Get.Character?.CurrentHealth}";
+            string hearts = Enumerable.Range(1, MyGame.Get.Character.CurrentHealth)
+                .Aggregate("", (acc, next) => acc += "D");
+            TXT_CurrentHealth.DisplayedString = $"{hearts}";
+            TXT_CurrentHealth.Position = new Vector2f((Engine.Get.Window.Size.X / 2f) - (TXT_CurrentHealth.GetLocalBounds().Width / 2f), Engine.Get.Window.Size.Y - (TXT_CurrentHealth.GetLocalBounds().Height + 15f));
         }
   }
 }

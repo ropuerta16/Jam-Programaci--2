@@ -13,7 +13,7 @@ namespace GameJam
         public float RemainingTime;
         public float TimeIncrease;
 
-        public const float RadiusRatio = 5f;
+        public const float RadiusRatio = 10f;
         public const float BorderRadius = 10f;
         public float MinRadius = 30f;
 
@@ -27,7 +27,7 @@ namespace GameJam
             
             Speed = 150f;
 
-            RemainingTime = 150.0f;
+            RemainingTime = 20.0f;
             TimeIncrease = 0f;
             LightCircle.Radius = (RemainingTime * RadiusRatio);
             

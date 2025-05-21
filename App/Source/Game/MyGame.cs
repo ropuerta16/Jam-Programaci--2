@@ -30,7 +30,7 @@ namespace GameJam
         #region Game Scene
         public Sound GameAudio { get; private set; }
         public GameBackground GameBackground { get; private set; }
-        public ClickHandler ClickHandler { private set; get; }
+        public InputHandler InputHandler { private set; get; }
         public Darkness Darkness { get; private set; }
         public Lightbeam Lightbeam { get; private set; }
         public List<PowerUp> PowerUps { get; private set; }
@@ -79,8 +79,8 @@ namespace GameJam
         {
             BoundaryActorSpawner<Moth> spawner;
             spawner = Engine.Get.Scene.Create<BoundaryActorSpawner<Moth>>();
-            spawner.MinTime = 10.0f;
-            spawner.MaxTime = 15.0f;
+            spawner.MinTime = 6.0f;
+            spawner.MaxTime = 10.0f;
             spawner.Reset();
         }
 
@@ -141,8 +141,8 @@ namespace GameJam
                         Lightbeam = null;
                         Darkness?.Destroy();
                         Darkness = null;
-                        ClickHandler?.Destroy();
-                        ClickHandler = null;
+                        InputHandler?.Destroy();
+                        InputHandler = null;
                         GameBackground?.Destroy();
                         GameBackground = null;
 
@@ -178,12 +178,12 @@ namespace GameJam
                     case GameState.Game:
                         GameAudio = SoundManager.PlaySound("GameAudio", 30.0f, true);
                         GameBackground ??= Engine.Get.Scene.Create<GameBackground>();
-                        ClickHandler ??= Engine.Get.Scene.Create<ClickHandler>();
+                        InputHandler ??= Engine.Get.Scene.Create<InputHandler>();
                         Darkness ??= Engine.Get.Scene.Create<Darkness>();
                         Lightbeam ??= Engine.Get.Scene.Create<Lightbeam>();
 
                         PowerUps ??= new List<PowerUp>();
-                        foreach (int i in Enumerable.Range(0, 5).ToArray())
+                        foreach (int i in Enumerable.Range(1, 5).ToArray())
                         {
                             PowerUps.Add(Engine.Get.Scene.Create<PowerUp>());
                         }
@@ -195,7 +195,7 @@ namespace GameJam
                         StartingBeacon.Position = new Vector2f(StartPoint.Position.X, StartPoint.Position.Y);
 
                         IntermediatePoints ??= new List<TargetPoint>();
-                        foreach (int i in Enumerable.Range(0, 6).ToArray())
+                        foreach (int i in Enumerable.Range(1, 9).ToArray())
                         {
                             TargetPoint intermediatePoint = Engine.Get.Scene.Create<TargetPoint>();
                             intermediatePoint.Init(TargetPoint.TargetType.Intermediate);

@@ -1,35 +1,33 @@
-# Jam-Programació - 2
+# Game Jam — Programació II
 
-
-Títol: Lightbringer
+Títol: Lightbound
 
 Temes:
 
   - Dark/Light
 
   - Running out of Space
+
+  - Running out of Time
   
-Intro:
+Resum:
 
-  - Has de perseguir un NPC amb la llum que controles perquè no perdi vida. 
+ Has d'il·luminar el camí d'un petit dimoni alhora que es va obrint pas en un bosc obscur. Aquest anirà recollint bosses d'or fins a arribar al tresor final. 
+ Alhora, la llum es va reduint i mentre protegeixes al dimoni hauràs d'anar buscant pocions que et permetran recuperar lluentor en el teu feix de llum. 
+ Tot això amb la dificultat d'esquivar i matar palometes que intentaran absorbir part de la lluentor.
 
-  - Alhora, la llum es va reduint i has de buscar punts de llum perquè no decreixi.
+ Aconseguiràs ajudar el petit dimoni a arribar a la seva fita? Molta sort! ! ^^
 
-  - A més, se li suma la dificultat d'esquivar palometes perquè no et redueixi el radi de la llum (les pots matar).
-
-
-Com Funciona:
+Com funciona:
 
    - Pantalla d'inici per explicar el funcionament del joc. En fer clic comença el joc.
 
    - Pantalla fosca on hi ha un punt de llum que segueix el ratolí i es va reduint a mesura que transcorre el temps. 
 
-   - Al centre superior, es veurà representada la vida del NPC que has de buscar (sobre 100).
+   - Al centre inferior es veurà representada la vida del dimoni que has de protegir.
 
-   - Player ha d'enfocar al NPC perquè no perdi vida i al mateix temps buscar per la pantalla PowrUps perquè la llum no es consumeixi.
+   - Mentre el dimoni no estigui proper a un feix de llum, perdrà vida progressivament. Tot i que arreu del mapa hi ha pocions que t'ajudaran a recuperar lluentor.
 
-   - Com a enemics, hi ha unes palometes que, en tocar el centre de la llum, fa que es consumeixi més ràpidament.
+   - Com a enemics, hi ha unes palometes que perseguiran la llum i aquestes reduiran la lluentor quan estiguin a prop d'aquest. Les palometes es maten fent-li un número determinat de clic.
 
-   - Les palometes es poden matar fent clic a sobre d'elles.
-
-   - Objectiu final: que el personatge arribi al final de la pantalla sense morir i sense que la llum es consumeixi totalment.
+   - Objectiu final: que el petit dimoni arribi a l'últim objectiu sense morir i sense que la llum es consumeixi totalment.

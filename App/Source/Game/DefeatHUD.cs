@@ -1,20 +1,14 @@
-﻿using SFML.Audio;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static GameJam.MyGame;
 
 namespace GameJam
 {
     public class DefeatHUD : StaticActor
     {
         private readonly string title = "GAME OVER";
-        private readonly string playAgain = "R - VOLVER A JUGAR";
+        private readonly string playAgain = "R - PLAY AGAIN";
         private readonly string quit = "Q - EXIT";
 
         private Font font, titleFont;
@@ -80,7 +74,7 @@ namespace GameJam
         {
             if (args.Code == Keyboard.Key.R)
             {
-                MyGame.Get.ChangeState(GameState.Game);
+                MyGame.Get.ChangeState(MyGame.GameState.Game);
             }
             else if (args.Code == Keyboard.Key.Q)
             {
