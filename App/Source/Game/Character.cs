@@ -6,11 +6,11 @@ namespace GameJam
 {
     public class Character : StaticActor
     {
+        Random random = new Random();
         TargetPoint currentTarget;
         public Character()
         {
             Sprite = new Sprite(new Texture("Data/Textures/Player/Character.png"));
-            Random random = new Random();
             float x = random.Next(0, 1024);
             float y = random.Next(0, 764);
             Position = new Vector2f(x, y);
@@ -28,6 +28,7 @@ namespace GameJam
             if(GetGlobalBounds().Intersects(currentTarget.GetGlobalBounds()))
             {
                 currentTarget.Destroy();
+                currentTarget = MyGame.Get.IntermediatePoints[random.Next(0, MyGame.Get.IntermediatePoints.Count)];
             }
 
             if (MyGame.Get.IntermediatePoints.Count == 0)

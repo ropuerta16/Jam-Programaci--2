@@ -12,6 +12,7 @@ namespace GameJam
         }
         public override void Update(float dt)
         {
+
         }
     }
 }
