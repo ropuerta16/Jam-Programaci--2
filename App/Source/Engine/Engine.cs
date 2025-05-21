@@ -47,7 +47,7 @@ namespace GameJam
 
     private void Init()
     {
-      VideoMode videoMode = new VideoMode(1024, 768);
+      VideoMode videoMode = new VideoMode(1440,900);
       Window = new RenderWindow(videoMode, "Lightbringer");
       Window.SetVerticalSyncEnabled(true);
 

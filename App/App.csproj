@@ -433,6 +433,15 @@
     <None Update="Data\Textures\Background\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Textures\Background\Cuadrado.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\Background\MenusFondo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Textures\Background\Resctangulo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Textures\Boxes\Bomb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -89,7 +89,7 @@ namespace GameJam
             switch (state)
             {
                 case "intro":
-                    if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+                    if (Mouse.IsButtonPressed(Mouse.Button.Left))
                     {
                         state = "game";
                     }
