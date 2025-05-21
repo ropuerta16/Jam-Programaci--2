@@ -16,6 +16,7 @@ namespace GameJam
         public TargetPoint StartPoint { get; private set; }
         public Beacon StartingBeacon { get; private set; }
         public List<TargetPoint> IntermediatePoints { get; private set; }
+        public Character Character { get; private set; }
         public TargetPoint FinishPoint { get; private set; }
         private static MyGame instance;
         public static MyGame Get
@@ -38,6 +39,7 @@ namespace GameJam
             Background = Engine.Get.Scene.Create<Background>();
             Darkness = Engine.Get.Scene.Create<Darkness>();
             Light = Engine.Get.Scene.Create<Lightbeam>();
+            Character = Engine.Get.Scene.Create<Character>();
 
             PowerUps = new List<PowerUp>();
             foreach (int i in Enumerable.Range(0, 5).ToArray()) {
