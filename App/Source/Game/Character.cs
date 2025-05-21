@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameJam
 {
-    internal class Character:StaticActor
+    public class Character:StaticActor
     {
         public Character()
         {
@@ -17,7 +17,7 @@ namespace GameJam
             float x = random.Next(0, 1024);
             float y = random.Next(0, 764);
             Position = new Vector2f(x, y);
-            Speed = 300f;
+            Speed = 30f;
 
 
         }
