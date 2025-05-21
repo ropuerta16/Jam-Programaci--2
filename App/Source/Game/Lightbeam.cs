@@ -27,7 +27,7 @@ namespace GameJam
             
             Speed = 150f;
 
-            RemainingTime = 75.0f;
+            RemainingTime = 150.0f;
             TimeIncrease = 0f;
             LightCircle.Radius = (RemainingTime * RadiusRatio);
             
@@ -44,7 +44,9 @@ namespace GameJam
 
         public override void Update(float dt)
         {
+            if (MyGame.Get.CurrentState != MyGame.GameState.Game) return;
             base.Update(dt);
+
             if (TimeIncrease > 0f)
             {
                 TimeIncrease -= (dt * 2f);

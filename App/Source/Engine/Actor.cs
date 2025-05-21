@@ -15,10 +15,12 @@ namespace GameJam
     public enum ELayer
     {
       Background,
-      Entity,
+      Items,
+      Character,
+      Enemies,
       Darkness,
       Front,
-      Hud
+      HUD
     }
     public ELayer Layer { get; set; }
     protected Actor()

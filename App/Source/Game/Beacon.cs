@@ -1,7 +1,6 @@
 ﻿using Candle;
 using SFML.Graphics;
 using SFML.System;
-using System;
 
 namespace GameJam
 {
@@ -15,7 +14,7 @@ namespace GameJam
         public Beacon()
         {
             LightSource = new RadialLight();
-            LightCircle = new CircleShape(100f);
+            LightCircle = new CircleShape(200f);
             LightSource.Range = LightCircle.Radius + BorderRadius;
 
             MyGame.Get.Darkness.Lights.Add(LightSource);

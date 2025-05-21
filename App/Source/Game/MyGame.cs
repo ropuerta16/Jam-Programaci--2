@@ -1,6 +1,7 @@
-﻿using SFML.Graphics;
+﻿using SFML.Audio;
 using SFML.System;
 using SFML.Window;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,16 +9,51 @@ namespace GameJam
 {
     public class MyGame : Game
     {
-        public Hud HUD { private set; get; }
-        public Background Background { get; private set; }
+        public enum GameState
+        {
+            None = 0,
+            Intro = 1,
+            Game = 2,
+            Victory = 3,
+            Defeat = 4
+        }
+
+        public GameState CurrentState = GameState.None;
+
+        public SoundManager SoundManager { get; private set; }
+
+        #region Intro Scene
+        public IntroHUD IntroHUD { get; private set; }
+        public Sound IntroAudio { get; private set; }
+        #endregion
+
+        #region Game Scene
+        public Sound GameAudio { get; private set; }
+        public GameBackground GameBackground { get; private set; }
+        public ClickHandler ClickHandler { private set; get; }
         public Darkness Darkness { get; private set; }
-        public Lightbeam Light { get; private set; }
+        public Lightbeam Lightbeam { get; private set; }
         public List<PowerUp> PowerUps { get; private set; }
         public TargetPoint StartPoint { get; private set; }
         public Beacon StartingBeacon { get; private set; }
         public List<TargetPoint> IntermediatePoints { get; private set; }
         public TargetPoint FinishPoint { get; private set; }
+        public Character Character { get; private set; }
+        public GameHUD GameHUD { private set; get; }
+        #endregion
+
+        #region Defeat Scene
+        public Sound DefeatAudio { get; private set; }
+        public DefeatHUD DefeatHUD { get; private set; }
+        #endregion
+
+        #region Victory Scene
+        public Sound VictoryAudio { get; private set; }
+        public VictoryHUD VictoryHUD { get; private set; }
+        #endregion
+
         private static MyGame instance;
+
         public static MyGame Get
         {
             get
@@ -35,33 +71,17 @@ namespace GameJam
         }
         public void Init()
         {
-            Background = Engine.Get.Scene.Create<Background>();
-            Darkness = Engine.Get.Scene.Create<Darkness>();
-            Light = Engine.Get.Scene.Create<Lightbeam>();
+            SoundManager ??= new SoundManager();
+            ChangeState(GameState.Intro);
+        }
 
-            PowerUps = new List<PowerUp>();
-            foreach (int i in Enumerable.Range(0, 5).ToArray()) {
-                PowerUps.Add(Engine.Get.Scene.Create<PowerUp>());
-            }
-
-            StartPoint = Engine.Get.Scene.Create<TargetPoint>();
-            StartPoint.Init(TargetPoint.TargetType.Start);
-
-            StartingBeacon = Engine.Get.Scene.Create<Beacon>();
-            StartingBeacon.Position = new Vector2f(StartPoint.Position.X, StartPoint.Position.Y);
-
-            IntermediatePoints = new List<TargetPoint>();
-            foreach (int i in Enumerable.Range(0, 4).ToArray())
-            {
-                TargetPoint intermediatePoint = Engine.Get.Scene.Create<TargetPoint>();
-                intermediatePoint.Init(TargetPoint.TargetType.Intermediate);
-                IntermediatePoints.Add(intermediatePoint);
-            }
-
-            FinishPoint = Engine.Get.Scene.Create<TargetPoint>();
-            FinishPoint.Init(TargetPoint.TargetType.Finish);
-
-            HUD = Engine.Get.Scene.Create<Hud>();
+        private void CreateMothSpawner()
+        {
+            BoundaryActorSpawner<Moth> spawner;
+            spawner = Engine.Get.Scene.Create<BoundaryActorSpawner<Moth>>();
+            spawner.MinTime = 10.0f;
+            spawner.MaxTime = 15.0f;
+            spawner.Reset();
         }
 
         public void DeInit()
@@ -69,8 +89,146 @@ namespace GameJam
         }
         public void Update(float dt)
         {
+        }
 
+        public void ChangeState(GameState newState) {
+            if (newState != CurrentState)
+            {
+                switch (CurrentState)
+                {
+                    case GameState.None:
+                        break;
+                    case GameState.Intro:
+                        SoundManager.RemoveSound(IntroAudio);
+                        IntroAudio?.Dispose();
+                        IntroAudio = null;
+
+                        IntroHUD?.Destroy();
+                        IntroHUD = null;
+
+                        break;
+                    case GameState.Game:
+                        SoundManager.RemoveSound(GameAudio);
+                        GameAudio?.Dispose();
+                        GameAudio = null;
+
+                        GameHUD?.Destroy();
+                        GameHUD = null;
+
+                        foreach (Moth m in Engine.Get.Scene.GetAll<Moth>()) m.RemoveExplode();
+                        DestroyAll<BoundaryActorSpawner<Moth>>();
+                        DestroyAll<Moth>();
+
+                        Character.RemoveOnCharacterDestroy();
+                        Character?.Destroy();
+                        Character = null;
+
+                        FinishPoint.RemoveOnFinishDestroy();
+                        FinishPoint?.Destroy();
+                        FinishPoint = null;
+                        DestroyAll<TargetPoint>();
+                        IntermediatePoints = null;
+                        StartingBeacon?.Destroy();
+                        StartingBeacon = null;
+                        StartPoint?.Destroy();
+                        StartPoint = null;
+
+                        foreach (PowerUp p in Engine.Get.Scene.GetAll<PowerUp>()) p.RemoveOnPotionDestroy();
+                        DestroyAll<PowerUp>();
+                        PowerUps = null;
+
+                        Lightbeam?.Destroy();
+                        Lightbeam = null;
+                        Darkness?.Destroy();
+                        Darkness = null;
+                        ClickHandler?.Destroy();
+                        ClickHandler = null;
+                        GameBackground?.Destroy();
+                        GameBackground = null;
+
+                        break;
+                    case GameState.Defeat:
+                        SoundManager.RemoveSound(DefeatAudio);
+                        DefeatAudio?.Dispose();
+                        DefeatAudio = null;
+
+                        DefeatHUD?.Destroy();
+                        DefeatHUD = null;
+
+                        break;
+                    case GameState.Victory:
+                        SoundManager.RemoveSound(VictoryAudio);
+                        VictoryAudio?.Dispose();
+                        VictoryAudio = null;
+
+                        VictoryHUD?.Destroy();
+                        VictoryHUD = null;
+
+                        break;
+                }
+
+                switch (newState)
+                {
+                    case GameState.None:
+                        break;
+                    case GameState.Intro:
+                        IntroHUD ??= Engine.Get.Scene.Create<IntroHUD>();
+                        IntroAudio = SoundManager.PlaySound("IntroAudio", 30.0f, true);
+                        break;
+                    case GameState.Game:
+                        GameAudio = SoundManager.PlaySound("GameAudio", 30.0f, true);
+                        GameBackground ??= Engine.Get.Scene.Create<GameBackground>();
+                        ClickHandler ??= Engine.Get.Scene.Create<ClickHandler>();
+                        Darkness ??= Engine.Get.Scene.Create<Darkness>();
+                        Lightbeam ??= Engine.Get.Scene.Create<Lightbeam>();
+
+                        PowerUps ??= new List<PowerUp>();
+                        foreach (int i in Enumerable.Range(0, 5).ToArray())
+                        {
+                            PowerUps.Add(Engine.Get.Scene.Create<PowerUp>());
+                        }
+
+                        StartPoint ??= Engine.Get.Scene.Create<TargetPoint>();
+                        StartPoint.Init(TargetPoint.TargetType.Start);
+
+                        StartingBeacon ??= Engine.Get.Scene.Create<Beacon>();
+                        StartingBeacon.Position = new Vector2f(StartPoint.Position.X, StartPoint.Position.Y);
+
+                        IntermediatePoints ??= new List<TargetPoint>();
+                        foreach (int i in Enumerable.Range(0, 6).ToArray())
+                        {
+                            TargetPoint intermediatePoint = Engine.Get.Scene.Create<TargetPoint>();
+                            intermediatePoint.Init(TargetPoint.TargetType.Intermediate);
+                            IntermediatePoints.Add(intermediatePoint);
+                        }
+
+                        FinishPoint ??= Engine.Get.Scene.Create<TargetPoint>();
+                        FinishPoint.Init(TargetPoint.TargetType.Finish);
+
+                        Character ??= Engine.Get.Scene.Create<Character>();
+
+                        CreateMothSpawner();
+
+                        GameHUD = Engine.Get.Scene.Create<GameHUD>();
+                        break;
+                    case GameState.Defeat:
+                        DefeatHUD ??= Engine.Get.Scene.Create<DefeatHUD>();
+                        DefeatAudio = SoundManager.PlaySound("DefeatAudio", 30.0f);
+                        break;
+                    case GameState.Victory:
+                        VictoryHUD ??= Engine.Get.Scene.Create<VictoryHUD>();
+                        VictoryAudio = SoundManager.PlaySound("VictoryAudio", 30.0f);
+                        break;
+                }
+
+                CurrentState = newState;
+            }
+        }
+
+        private void DestroyAll<T>() where T : Actor
+        {
+            var actors = Engine.Get.Scene.GetAll<T>();
+            actors.ForEach(x => x.Destroy());
         }
     }
 }
-

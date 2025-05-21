@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using System;
 
 namespace GameJam
 {
@@ -16,10 +17,11 @@ namespace GameJam
 
         public TargetPoint()
         {
-            Layer = ELayer.Entity;
+            Layer = ELayer.Items;
         }
         public override void Update(float dt)
         {
+            if (MyGame.Get.CurrentState != MyGame.GameState.Game) return;
             base.Update(dt);
         }
 
@@ -51,7 +53,7 @@ namespace GameJam
                         ),
                         Engine.Get.random.NextFloat(
                             1f + (GetLocalBounds().Height / 2f),
-                            Engine.Get.Window.Size.X - 1f - (GetLocalBounds().Height / 2f)
+                            Engine.Get.Window.Size.Y - 1f - (GetLocalBounds().Height / 2f)
                         )
                     );
                     break;
@@ -66,9 +68,24 @@ namespace GameJam
                             Engine.Get.Window.Size.Y - 1f - (GetLocalBounds().Height / 2f)
                         )
                     );
+
+                    OnDestroy += OnFinishDestroy;
+
                     break;
             }
             Type = type;
+        }
+
+        public void OnFinishDestroy(Actor actor)
+        {
+            OnDestroy -= OnFinishDestroy;
+            Console.WriteLine("OnFinishDestroy");
+            MyGame.Get.ChangeState(MyGame.GameState.Victory);
+        }
+
+        public void RemoveOnFinishDestroy()
+        {
+            OnDestroy -= OnFinishDestroy;
         }
     }
 }
