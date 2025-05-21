@@ -84,7 +84,6 @@ namespace GameJam
                     .OrderBy(ip => (int) (ip.Position - Position).Size())
                     .ToList()
                     .First();
-                Console.WriteLine($"choosen -> {(int) (Position - CurrentTarget.Position).Size()}");
             }
             else
             {
