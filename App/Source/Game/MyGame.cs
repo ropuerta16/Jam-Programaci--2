@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using SFML.Audio;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
@@ -9,6 +10,12 @@ namespace GameJam
     {
         private string state = "intro";
         private string previousState = null;
+
+        private SoundManager soundManager;
+        private Sound introAudio;
+        private Sound playingAudio;
+        private Sound loseAudio;
+        private Sound winAudio;
 
         public Hud hud { private set; get; }
         public Background background { get; private set; }
@@ -36,6 +43,8 @@ namespace GameJam
         }
         public void Init()
         {
+            if (soundManager == null)
+                soundManager = new SoundManager();
             state = "intro";                               
         }
 
@@ -52,21 +61,25 @@ namespace GameJam
                 {
                     case "intro":
                         intro = Engine.Get.Scene.Create<Intro>();
+                        introAudio = soundManager.PlaySound("IntroAudio", 30.0f, true);
                         break;
-                    case "game":
+                    case "game":                        
                         background = Engine.Get.Scene.Create<Background>();
                         hud = Engine.Get.Scene.Create<Hud>();
                         light = Engine.Get.Scene.Create<Light>();
                         enemies = Engine.Get.Scene.Create<Enemies>();
+                        playingAudio = soundManager.PlaySound("PlayingAudio", 30.0f, true);
                         state = "playing"; 
                         break;
-                    case "playing":
+                    case "playing":                        
                         break;
                     case "gameOver":
                         gameOver = Engine.Get.Scene.Create<GameOver>();
+                        loseAudio = soundManager.PlaySound("LoseAudio", 100.0f, false);
                         break;
                     case "gameWin":
                         gameWin = Engine.Get.Scene.Create<GameWin>();
+                        winAudio = soundManager.PlaySound("WinAudio", 100.0f, false);
                         break;
                 }
 
@@ -80,6 +93,8 @@ namespace GameJam
                     {
                         state = "game";
                     }
+                    break;
+                case "game":
                     break;
                 case "playing":
                     if (Keyboard.IsKeyPressed(Keyboard.Key.O))
@@ -124,8 +139,14 @@ namespace GameJam
                         Engine.Get.Scene.Destroy(intro);
                         intro = null;
                     }
+                    if (introAudio != null)
+                    {
+                        soundManager.RemoveSound(introAudio);
+                        introAudio = null;
+                    }
                     break;
                 case "game":
+                    break;
                 case "playing":
                     if (background != null)
                     {
@@ -147,6 +168,11 @@ namespace GameJam
                         Engine.Get.Scene.Destroy(enemies);
                         enemies = null;
                     }
+                    if (playingAudio != null)
+                    {
+                        soundManager.RemoveSound(playingAudio);
+                        playingAudio = null;
+                    }
                     break;
                 case "gameOver":
                     if (gameOver != null)
@@ -154,12 +180,22 @@ namespace GameJam
                         Engine.Get.Scene.Destroy(gameOver);
                         gameOver = null;
                     }
+                    if (loseAudio != null)
+                    {
+                        soundManager.RemoveSound(loseAudio);
+                        loseAudio = null;
+                    }
                     break;
                 case "gameWin":
                     if (gameWin != null)
                     {
                         Engine.Get.Scene.Destroy(gameWin);
                         gameWin = null;
+                    }
+                    if (winAudio != null)
+                    {
+                        soundManager.RemoveSound(winAudio);
+                        winAudio = null;
                     }
                     break;
             }

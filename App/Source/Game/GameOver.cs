@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using SFML.Audio;
+using SFML.Graphics;
 using SFML.System;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace GameJam
         private Color quitColor = Color.White;
         private Sprite introImage;
 
-        private Color backgroundColor = new Color(30, 30, 60);
+        private Color backgroundColor = new Color(30, 30, 60);        
 
         public GameOver() 
         {
@@ -37,7 +38,7 @@ namespace GameJam
             quitText = new Text(quit, font, 28);
             quitText.FillColor = quitColor;
 
-            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));
+            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));            
         }
         public override void Draw(RenderTarget target, RenderStates states)
         {

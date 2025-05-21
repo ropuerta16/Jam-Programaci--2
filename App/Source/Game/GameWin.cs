@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.System;
 
@@ -22,6 +23,7 @@ namespace GameJam
         private Sprite introImage;
 
         private Color backgroundColor = new Color(30, 30, 60);
+        
 
         public GameWin()
         {
@@ -37,7 +39,7 @@ namespace GameJam
             quitText = new Text(quit, font, 28);
             quitText.FillColor = quitColor;
 
-            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));
+            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));            
         }
         public override void Draw(RenderTarget target, RenderStates states)
         {

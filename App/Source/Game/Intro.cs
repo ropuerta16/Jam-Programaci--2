@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.System;
 
@@ -23,7 +24,8 @@ namespace GameJam
         private Color subtitleColor = Color.Blue;
         private Sprite introImage;
 
-        private Color backgroundColor = new Color(30, 30, 60);
+        private Color backgroundColor = new Color(30, 30, 60);        
+
         public Intro()
         {
             titleFont = new Font("Data/Fonts/Scratchy Lemon.ttf");
@@ -41,7 +43,7 @@ namespace GameJam
             subtitleText = new Text(subtitle, titleFont, 40);
             subtitleText.FillColor = subtitleColor;
 
-            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));
+            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));            
         }
 
         public override void Draw(RenderTarget target, RenderStates states)
