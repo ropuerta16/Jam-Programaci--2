@@ -37,6 +37,7 @@ namespace GameJam
         public Beacon StartingBeacon { get; private set; }
         public List<TargetPoint> IntermediatePoints { get; private set; }
         public TargetPoint FinishPoint { get; private set; }
+        public Beacon FinishBeacon { get; private set; }
         public Character Character { get; private set; }
         public GameHUD GameHUD { private set; get; }
         #endregion
@@ -203,6 +204,10 @@ namespace GameJam
 
                         FinishPoint ??= Engine.Get.Scene.Create<TargetPoint>();
                         FinishPoint.Init(TargetPoint.TargetType.Finish);
+
+                        FinishBeacon ??= Engine.Get.Scene.Create<Beacon>();
+                        FinishBeacon.Position = new Vector2f(FinishPoint.Position.X, FinishPoint.Position.Y);
+                        FinishBeacon.LightCircle.Radius *= 0.25f;
 
                         Character ??= Engine.Get.Scene.Create<Character>();
 

@@ -13,7 +13,7 @@ namespace GameJam
         private readonly string BulletPoint2Str = "You must be careful as your lightbeam will fade over time.";
         private readonly string BulletPoint3Str = "Scout the map for potions that will allow you to replenish your lightbeam.";
         private readonly string BulletPoint4Str = "Moths will be attracted to your lightbeam, kill them to prevent them from absorbing your light.";
-        private readonly string HowToPlayStr = "- The lightbeam will follow your cursor through the map.\n- To absorb a potion, hold your left mouse button over it.\n- Moths might be killed by clicking on them.";
+        private readonly string HowToPlayStr = "- The lightbeam will follow your cursor through the map.\n- To absorb a potion, hold your left mouse button over it.\n- Moths can be killed by clicking on them thrice.";
         private readonly string SubtitleStr = "BEGIN";
 
         private Texture BackgroundTexture;

@@ -22,6 +22,7 @@ namespace GameJam
 
         public override void Update(float dt)
         {
+            LightSource.Range = LightCircle.Radius + BorderRadius;
             LightCircle.Origin = new Vector2f(LightCircle.GetLocalBounds().Width / 2f, LightCircle.GetLocalBounds().Height / 2f);
             LightSource.Position = new Vector2f(Position.X, Position.Y);
             LightCircle.Position = new Vector2f(Position.X, Position.Y);

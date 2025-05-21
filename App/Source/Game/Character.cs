@@ -1,7 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace GameJam
@@ -80,9 +79,10 @@ namespace GameJam
             if (MyGame.Get.IntermediatePoints is not null && MyGame.Get.IntermediatePoints.Count > 0)
             {
                 CurrentTarget = MyGame.Get.IntermediatePoints
-                    .OrderBy(ip => (Position - ip.Position).Size())
+                    .OrderBy(ip => (int) (ip.Position - Position).Size())
                     .ToList()
                     .First();
+                Console.WriteLine($"choosen -> {(int) (Position - CurrentTarget.Position).Size()}");
             }
             else
             {
