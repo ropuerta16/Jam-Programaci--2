@@ -50,6 +50,7 @@ namespace GameJam
             if (
                 MyGame.Get.Lightbeam is not null
                 && (MyGame.Get.Lightbeam.Position - Position).Size() > MyGame.Get.Lightbeam.LightCircle.Radius
+                && MyGame.Get.StartingBeacon is not null
                 && (MyGame.Get.StartingBeacon.Position - Position).Size() > MyGame.Get.StartingBeacon.LightCircle.Radius
             )
             {
@@ -66,7 +67,7 @@ namespace GameJam
 
         private void OnCharacterDestroy(Actor actor)
         {
-            OnDestroy -= OnCharacterDestroy;
+            RemoveOnCharacterDestroy();
             MyGame.Get.ChangeState(MyGame.GameState.Defeat);
         }
 
@@ -79,7 +80,7 @@ namespace GameJam
             if (MyGame.Get.IntermediatePoints is not null && MyGame.Get.IntermediatePoints.Count > 0)
             {
                 CurrentTarget = MyGame.Get.IntermediatePoints
-                    .OrderBy(ip => (ip.Position - Position).Size())
+                    .OrderBy(ip => (Position - ip.Position).Size())
                     .ToList()
                     .First();
             }

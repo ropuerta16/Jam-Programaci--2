@@ -28,7 +28,7 @@ namespace GameJam
             
             Speed = 175f;
 
-            RemainingTime = 25.0f;
+            RemainingTime = 25f;
             TimeIncrease = 0f;
             LightCircle.Radius = (RemainingTime * RadiusRatio);
             
@@ -62,6 +62,7 @@ namespace GameJam
             }
             else
             {
+                RemainingTime = 0f;
                 MinRadius = 1f;
                 LightCircle.Radius = 1f;
             }

@@ -7,71 +7,89 @@ namespace GameJam
 {
     public class DefeatHUD : StaticActor
     {
-        private readonly string title = "GAME OVER";
-        private readonly string playAgain = "R - PLAY AGAIN";
-        private readonly string quit = "Q - EXIT";
+        private readonly string TitleStr = "GAME OVER";
+        private readonly string PlayAgainStr = "R - PLAY AGAIN";
+        private readonly string QuitStr = "Q - EXIT";
 
-        private Font font, titleFont;
-        private Text titleText, playAgainText, quitText;
-        private Color titleColor = Color.Black;
-        private Color playAgainColor = Color.Blue;
-        private Color quitColor = Color.White;
-        private Sprite introImage;
+        private Texture BackgroundTexture;
+        private Sprite BackgroundSprite;
 
-        private Texture backgroundTexture;
-        private Sprite backgroundSprite;
+        private Font FontOsifont, FontScratchyLemon;
+        private Text TXT_Title, TXT_PlayAgain, TXT_Quit;
+
+        private Sprite IMG_CharacterImage;
+
+        private float InputDelay;
 
         public DefeatHUD()
         {
-            titleFont = new Font("Data/Fonts/Scratchy Lemon.ttf");
-            font = new Font("Data/Fonts/osifont-lgpl3fe.ttf");
+            RenderWindow window = Engine.Get.Window;
+            Vector2u size = window.Size;
 
-            titleText = new Text(title, titleFont, 250);
-            titleText.FillColor = titleColor;
+            Layer = ELayer.HUD;
+            FontScratchyLemon = new Font("Data/Fonts/Scratchy Lemon.ttf");
+            FontOsifont = new Font("Data/Fonts/osifont-lgpl3fe.ttf");
 
-            playAgainText = new Text(playAgain, font, 40);
-            playAgainText.FillColor = playAgainColor;
+            BackgroundTexture = new Texture("Data/Textures/Backgrounds/MenuBackground.jpg");
+            BackgroundSprite = new Sprite(BackgroundTexture);
+            BackgroundSprite.Scale = new Vector2f(
+                (float)size.X / BackgroundTexture.Size.X,
+                (float)size.Y / BackgroundTexture.Size.Y
+            );
+            BackgroundSprite.Position = new Vector2f(0, 0);
 
-            quitText = new Text(quit, font, 38);
-            quitText.FillColor = quitColor;
+            TXT_Title = new Text(TitleStr, FontScratchyLemon, 250);
+            TXT_Title.Position = new Vector2f(
+                (size.X - TXT_Title.GetLocalBounds().Width) / 2f,
+                130
+            );
+            TXT_Title.FillColor = Color.Black;
 
-            introImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));
+            TXT_PlayAgain = new Text(PlayAgainStr, FontOsifont, 40);
+            TXT_PlayAgain.Position = new Vector2f(
+                (size.X - TXT_PlayAgain.GetLocalBounds().Width) / 2f,
+                (size.Y - TXT_PlayAgain.GetLocalBounds().Height) / 2f + 10
+            );
+            TXT_PlayAgain.FillColor = Color.Blue;
 
-            backgroundTexture = new Texture("Data/Textures/Backgrounds/MenuBackground.jpg");
-            backgroundSprite = new Sprite(backgroundTexture);
+            TXT_Quit = new Text(QuitStr, FontOsifont, 38);
+            TXT_Quit.Position = new Vector2f(
+                (size.X - TXT_Quit.GetLocalBounds().Width) / 2f,
+                (size.Y - TXT_Quit.GetLocalBounds().Height) / 2f + TXT_PlayAgain.GetLocalBounds().Height + 30);
+            TXT_Quit.FillColor = Color.White;
+
+            IMG_CharacterImage = new Sprite(new Texture("Data/Textures/Player/Character.png"));
+            IMG_CharacterImage.Position = new Vector2f(
+                (size.X - IMG_CharacterImage.GetLocalBounds().Width) / 2f,
+                (size.Y - IMG_CharacterImage.GetLocalBounds().Height) / 2f + IMG_CharacterImage.GetLocalBounds().Height + 80
+            );
+
+            InputDelay = 1f;
 
             Engine.Get.Window.KeyPressed += OnKeyPressed;
+            OnDestroy += OnDefeatHUDDestroy;
         }
+
         public override void Draw(RenderTarget target, RenderStates states)
         {
-            var window = Engine.Get.Window;
-            var size = window.Size;
+            target.Draw(BackgroundSprite, states);
+            target.Draw(TXT_Title, states);
+            target.Draw(TXT_PlayAgain, states);
+            target.Draw(TXT_Quit, states);
+            target.Draw(IMG_CharacterImage, states);
+        }
 
-            var titleBounds = titleText.GetLocalBounds();
-            titleText.Position = new Vector2f((size.X - titleBounds.Width) / 2f, 130);
-
-            var playAgainBounds = playAgainText.GetLocalBounds();
-            playAgainText.Position = new Vector2f((size.X - playAgainBounds.Width) / 2f, ((size.Y - playAgainBounds.Height) / 2f) + 10);
-
-            var quitBounds = quitText.GetLocalBounds();
-            quitText.Position = new Vector2f((size.X - quitBounds.Width) / 2f, ((size.Y - quitBounds.Height) / 2f) + playAgainBounds.Height + 30);
-
-
-            backgroundSprite.Scale = new Vector2f((float)size.X / backgroundTexture.Size.X, (float)size.Y / backgroundTexture.Size.Y);
-            backgroundSprite.Position = new Vector2f(0, 0);
-
-            target.Draw(backgroundSprite, states);
-            target.Draw(titleText, states);
-            target.Draw(playAgainText, states);
-            target.Draw(quitText, states);
-
-            var imageBounds = introImage.GetLocalBounds();
-            introImage.Position = new Vector2f((size.X - imageBounds.Width) / 2f, ((size.Y - quitBounds.Height) / 2f) + playAgainBounds.Height + 80);
-            target.Draw(introImage, states);
+        public override void Update(float dt)
+        {
+            base.Update(dt);
+            if (InputDelay > 0f) InputDelay -= dt;
+            else InputDelay = 0f;
         }
 
         public void OnKeyPressed(object sender, KeyEventArgs args)
         {
+            if (InputDelay > 0f) return;
+
             if (args.Code == Keyboard.Key.R)
             {
                 MyGame.Get.ChangeState(MyGame.GameState.Game);
@@ -80,6 +98,12 @@ namespace GameJam
             {
                 Environment.Exit(0);
             }
+        }
+
+        public void OnDefeatHUDDestroy(Actor actor)
+        {
+            OnDestroy -= OnDefeatHUDDestroy;
+            Engine.Get.Window.KeyPressed -= OnKeyPressed;
         }
     }
 }

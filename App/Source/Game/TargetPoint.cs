@@ -78,7 +78,7 @@ namespace GameJam
 
         public void OnFinishDestroy(Actor actor)
         {
-            OnDestroy -= OnFinishDestroy;
+            RemoveOnFinishDestroy();
             MyGame.Get.ChangeState(MyGame.GameState.Victory);
         }
 
