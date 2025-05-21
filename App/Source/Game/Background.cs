@@ -7,7 +7,7 @@ namespace GameJam
         public Background()
         {
             Layer = ELayer.Background;
-            Sprite = new Sprite(new Texture("Data/Textures/Background.png"));
+            Sprite = new Sprite(new Texture("Data/Textures/Background/Background.png"));
         }
         public override void Update(float dt)
         {
