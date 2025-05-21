@@ -1,7 +1,5 @@
 ﻿using SFML.Audio;
 using SFML.System;
-using SFML.Window;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -195,7 +193,7 @@ namespace GameJam
                         StartingBeacon.Position = new Vector2f(StartPoint.Position.X, StartPoint.Position.Y);
 
                         IntermediatePoints ??= new List<TargetPoint>();
-                        foreach (int i in Enumerable.Range(1, 9).ToArray())
+                        foreach (int i in Enumerable.Range(1, 11).ToArray())
                         {
                             TargetPoint intermediatePoint = Engine.Get.Scene.Create<TargetPoint>();
                             intermediatePoint.Init(TargetPoint.TargetType.Intermediate);

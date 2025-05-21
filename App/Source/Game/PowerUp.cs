@@ -7,6 +7,8 @@ namespace GameJam
     public class PowerUp : AnimatedActor
     {
         public float RemainingTime;
+
+        public const float AbsorbRate = 5f;
         public PowerUp()
         {
             Layer = ELayer.Items;
@@ -20,7 +22,7 @@ namespace GameJam
                 Engine.Get.random.NextFloat(GetLocalBounds().Height, Engine.Get.Window.Size.Y - GetLocalBounds().Height)
             );
 
-            RemainingTime = Engine.Get.random.Next(5, 10);
+            RemainingTime = Engine.Get.random.Next(4, 6);
 
             OnDestroy += OnPotionDestroy;
         }
@@ -35,8 +37,8 @@ namespace GameJam
             base.Update(dt);
             if (Mouse.IsButtonPressed(Mouse.Button.Left) && GetGlobalBounds().Contains(Engine.Get.MousePos.X, Engine.Get.MousePos.Y)) {
                 AnimatedSprite.Loop = true;
-                RemainingTime -= (dt * 10f);
-                MyGame.Get.Lightbeam.TimeIncrease += (dt * 10f);
+                RemainingTime -= (dt * AbsorbRate);
+                MyGame.Get.Lightbeam.TimeIncrease += (dt * AbsorbRate);
                 if (RemainingTime <= 0f) {
                     Destroy();
                 }

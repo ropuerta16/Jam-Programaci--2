@@ -12,8 +12,9 @@ namespace GameJam
 
         public float RemainingTime;
         public float TimeIncrease;
+        public const float TimeIncreaseRate = 2f;
 
-        public const float RadiusRatio = 10f;
+        public const float RadiusRatio = 7.5f;
         public const float BorderRadius = 10f;
         public float MinRadius = 30f;
 
@@ -25,9 +26,9 @@ namespace GameJam
             LightCircle = new CircleShape();
             LightCircle.FillColor = new Color(255, 255, 255, 0);
             
-            Speed = 150f;
+            Speed = 175f;
 
-            RemainingTime = 20.0f;
+            RemainingTime = 25.0f;
             TimeIncrease = 0f;
             LightCircle.Radius = (RemainingTime * RadiusRatio);
             
@@ -49,8 +50,8 @@ namespace GameJam
 
             if (TimeIncrease > 0f)
             {
-                TimeIncrease -= (dt * 2f);
-                RemainingTime += (dt * 2f);
+                TimeIncrease -= (dt * TimeIncreaseRate);
+                RemainingTime += (dt * TimeIncreaseRate);
                 LightCircle.Radius = Math.Max(MinRadius, RemainingTime * RadiusRatio);
             }
             else if (RemainingTime > 0f)

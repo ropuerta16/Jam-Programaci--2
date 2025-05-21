@@ -27,7 +27,7 @@ namespace GameJam
             DetermineNextTarget();
             Position = new Vector2f(MyGame.Get.StartPoint.Position.X, MyGame.Get.StartPoint.Position.Y);
 
-            CurrentHealth = 20;
+            CurrentHealth = 15;
             HealthLossTimer = HealthLossRate;
 
             OnDestroy += OnCharacterDestroy;
@@ -67,7 +67,6 @@ namespace GameJam
         private void OnCharacterDestroy(Actor actor)
         {
             OnDestroy -= OnCharacterDestroy;
-            Console.WriteLine("OnCharacterDestroy");
             MyGame.Get.ChangeState(MyGame.GameState.Defeat);
         }
 
