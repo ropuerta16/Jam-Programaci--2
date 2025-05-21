@@ -39,7 +39,6 @@ namespace GameJam
             Background = Engine.Get.Scene.Create<Background>();
             Darkness = Engine.Get.Scene.Create<Darkness>();
             Light = Engine.Get.Scene.Create<Lightbeam>();
-            Character = Engine.Get.Scene.Create<Character>();
 
             PowerUps = new List<PowerUp>();
             foreach (int i in Enumerable.Range(0, 5).ToArray()) {
@@ -62,6 +61,8 @@ namespace GameJam
 
             FinishPoint = Engine.Get.Scene.Create<TargetPoint>();
             FinishPoint.Init(TargetPoint.TargetType.Finish);
+
+            Character = Engine.Get.Scene.Create<Character>();
 
             HUD = Engine.Get.Scene.Create<Hud>();
         }

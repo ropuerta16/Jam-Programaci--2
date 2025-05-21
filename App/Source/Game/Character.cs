@@ -16,21 +16,29 @@ namespace GameJam
             Position = new Vector2f(x, y);
             Speed = 30f;
             currentTarget = MyGame.Get.IntermediatePoints[random.Next(0, MyGame.Get.IntermediatePoints.Count)];
-
+            Position = MyGame.Get.StartPoint.Position;
         }
 
         public override void Update(float dt)
         {
             base.Update(dt);
 
-            
+            Forward = currentTarget.Position;
+
+            if(GetGlobalBounds().Intersects(currentTarget.GetGlobalBounds()))
+            {
+                currentTarget.Destroy();
+            }
+
+            if (MyGame.Get.IntermediatePoints.Count == 0)
+            {
+                currentTarget = MyGame.Get.FinishPoint;
+            }
+            Console.WriteLine(Position);
         }
-        public void Draw()
+        public override void Draw(RenderTarget target, RenderStates states)
         {
-            
+            base.Draw(target, states);
         }
-        
-
-
     }
 }
